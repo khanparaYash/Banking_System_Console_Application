@@ -1,4 +1,4 @@
-package test.java.service;
+package test;
 
 import enums.AccountTypeEnum;
 import exception.AccountNotFoundException;

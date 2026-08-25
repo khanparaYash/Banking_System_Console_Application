@@ -4,25 +4,25 @@ import exception.InsufficientBalanceException;
 void main() throws InterruptedException {
         SavingAccount acct = new SavingAccount(1, "Alice", "pw");
 
-        int depositers = 10000;
+        int depositors = 10000;
         int withdrawers = 10000;
-        Thread[] dts = new Thread[depositers];
+        Thread[] dts = new Thread[depositors];
         Thread[] wts = new Thread[withdrawers];
 
-        for (int i = 0; i < depositers; i++) {
+        for (int i = 0; i < depositors; i++) {
             dts[i] = new Thread(() -> acct.deposit(10, false));
             dts[i].start();
         }
 
         for (int i = 0; i < withdrawers; i++) {
             wts[i] = new Thread(() -> {
-                synchronized (acct) {
+
                     try {
                         acct.withdraw(10, false);
                     } catch (InsufficientBalanceException e) {
                         System.err.println("Withdraw failed: " + e.getMessage());
                     }
-                }
+
             });
             wts[i].start();
         }

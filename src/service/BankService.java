@@ -42,7 +42,16 @@ public class BankService {
 
     private final AccountRepo accountRepo = AccountRepo.getInstance();
 
-    public int createAccount(String holderName, String password, AccountTypeEnum type) {
+    public int createAccount(String holderName, String password, AccountTypeEnum type) throws IllegalArgumentException {
+        if (holderName == null || holderName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Holder name cannot be empty");
+        }
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("Account type cannot be null");
+        }
         int accountNumber = AccountNumberGenerator.generate();
         AddWaiting("Creating account");
 

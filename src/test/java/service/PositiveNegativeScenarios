@@ -1,0 +1,37 @@
+
+1) createAccount(holderName, password, type)
+- Positive:
+  - Valid holderName, password, and type -> returns new account number; repo contains Account with matching holderName, password, accountType and zero balance.
+- Negative:
+  - holderName null or blank -> IllegalArgumentException
+  - password null or blank -> IllegalArgumentException
+  - type null -> IllegalArgumentException
+
+
+2) login(accountNumber, password)
+- Positive:
+  - Correct accountNumber and password -> returns Account
+- Negative:
+  - Nonexistent accountNumber -> AccountNotFoundException
+  - Wrong password -> AuthenticationException
+
+
+3) deposit(account, amount)
+- Positive:
+  - amount > 0 -> balance increases by amount; transaction recorded
+- Negative:
+  - amount <= 0 -> InvalidAmountException
+  - account == null -> NullPointerException (not currently guarded)
+
+
+4) withdraw(account, amount)
+- Common rules:
+  - amount <= 0 -> InvalidAmountException
+  - account == null -> NullPointerException (not currently guarded)
+- SavingAccount (tests in BankServiceSavingAccountTest):
+  - Positive: amount > 0 and amount <= balance -> allowed; balance decreases; transaction recorded
+  - Negative: amount > balance -> InsufficientBalanceException
+- CurrentAccount (tests in BankServiceCurrentAccountTest):
+  - Positive: allows overdraft up to -2000 (resulting balance >= -2000) -> allowed
+  - Negative: withdraws that make balance < -2000 -> InsufficientBalanceException
+

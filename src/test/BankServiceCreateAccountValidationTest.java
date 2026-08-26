@@ -12,6 +12,7 @@ public class BankServiceCreateAccountValidationTest {
 
     private final BankService bankService = BankService.getInstance();
 
+    //this testcase is defined for creating account with empty name.
     @Test
     @DisplayName("createAccount rejects empty holder name")
     void createAccountRejectsEmptyHolder() {
@@ -19,6 +20,8 @@ public class BankServiceCreateAccountValidationTest {
                 () -> bankService.createAccount("  ", "pwd", AccountTypeEnum.SAVING));
     }
 
+
+    // this testcase is defined for creating account with empty password.
     @Test
     @DisplayName("createAccount rejects empty password")
     void createAccountRejectsEmptyPassword() {
@@ -26,6 +29,8 @@ public class BankServiceCreateAccountValidationTest {
                 () -> bankService.createAccount("Alice", "", AccountTypeEnum.SAVING));
     }
 
+
+    // this testcase is defined for creating account with null holder name.
     @Test
     @DisplayName("createAccount rejects null holder name")
     void createAccountRejectsNullHolder() {
@@ -33,6 +38,8 @@ public class BankServiceCreateAccountValidationTest {
                 () -> bankService.createAccount(null, "pwd", AccountTypeEnum.SAVING));
     }
 
+
+    // this testcase is defined for creating account with null password.
     @Test
     @DisplayName("createAccount rejects null password")
     void createAccountRejectsNullPassword() {
@@ -40,6 +47,8 @@ public class BankServiceCreateAccountValidationTest {
                 () -> bankService.createAccount("Alice", null, AccountTypeEnum.SAVING));
     }
 
+
+    //  this testcase is defined for creating account with null account type.
     @Test
     @DisplayName("createAccount rejects null account type")
     void createAccountRejectsNullType() {

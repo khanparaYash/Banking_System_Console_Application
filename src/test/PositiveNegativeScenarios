@@ -21,13 +21,13 @@
   - amount > 0 -> balance increases by amount; transaction recorded
 - Negative:
   - amount <= 0 -> InvalidAmountException
-  - account == null -> NullPointerException (not currently guarded)
+  - account == null -> NullPointerException
 
 
 4) withdraw(account, amount)
 - Common rules:
   - amount <= 0 -> InvalidAmountException
-  - account == null -> NullPointerException (not currently guarded)
+  - account == null -> NullPointerException
 - SavingAccount (tests in BankServiceSavingAccountTest):
   - Positive: amount > 0 and amount <= balance -> allowed; balance decreases; transaction recorded
   - Negative: amount > balance -> InsufficientBalanceException
